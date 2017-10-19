@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
 	validates :name, :date, :city, :state, presence: true
-	validates_each :date do |record, attr, value|
+	validates_each :date, allow_nil:true do |record, attr, value|
 		record.errors.add(attr, 'must be in the future') if value < Date.today
 	end
 	belongs_to :user
